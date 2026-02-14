@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz San Valentín, Isabela ✨</title>
+
+<style>
+body{
+margin:0;
+padding:0;
+background:linear-gradient(to bottom,#0f2027,#203a43,#2c5364);
+font-family:'Segoe UI',sans-serif;
+color:white;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+min-height:100vh;
+overflow:hidden;
+text-align:center;
+}
+
+/* ESTRELLAS */
+.estrella{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+border-radius:50%;
+opacity:0.7;
+animation:parpadeo 2s infinite alternate;
+}
+
+@keyframes parpadeo{
+from{opacity:0.2;}
+to{opacity:1;}
+}
+
+/* PETALOS CAYENDO */
+.petalo-caida{
+position:absolute;
+width:12px;
+height:18px;
+background:linear-gradient(to bottom,#ffffff,#d8cfff);
+border-radius:50%;
+opacity:0.8;
+animation:caer linear infinite;
+}
+
+@keyframes caer{
+from{
+transform:translateY(-100px) translateX(0) rotate(0deg);
+}
+to{
+transform:translateY(110vh) translateX(40px) rotate(360deg);
+}
+}
+
+/* TITULO */
+.titulo{
+position:absolute;
+top:40px;
+font-size:clamp(26px,5vw,46px);
+opacity:0;
+animation:fadeIn 3s forwards;
+}
+@keyframes fadeIn{
+to{opacity:1;}
+}
+
+/* RAMITO */
+.ramito{
+position:relative;
+width:300px;
+height:300px;
+margin-top:140px;
+animation:viento 4s ease-in-out infinite;
+}
+
+/* EFECTO VIENTO */
+@keyframes viento{
+0%{transform:rotate(0deg);}
+50%{transform:rotate(2deg);}
+100%{transform:rotate(0deg);}
+}
+
+/* LUZ DETRAS */
+.luz{
+position:absolute;
+width:220px;
+height:220px;
+background:radial-gradient(circle,rgba(255,255,255,0.4),transparent 70%);
+border-radius:50%;
+top:40px;
+left:40px;
+z-index:-1;
+animation:brillo 3s infinite alternate;
+}
+
+@keyframes brillo{
+from{opacity:0.4;}
+to{opacity:0.8;}
+}
+
+/* FLOR */
+.flor{
+position:absolute;
+width:120px;
+height:200px;
+}
+
+.petalo{
+position:absolute;
+width:40px;
+height:75px;
+background:linear-gradient(to bottom,#ffffff,#d8cfff);
+border-radius:50%;
+top:10px;
+left:40px;
+transform-origin:bottom center;
+}
+
+.centro{
+position:absolute;
+width:30px;
+height:30px;
+background:#fffacd;
+border-radius:50%;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+box-shadow:0 0 15px rgba(255,255,255,0.8);
+}
+
+.tallo{
+position:absolute;
+width:6px;
+height:100px;
+background:#2e8b57;
+left:50%;
+transform:translateX(-50%);
+top:100px;
+border-radius:10px;
+}
+
+/* POSICIONES */
+.f1{left:90px; top:0;}
+.f2{left:0; top:60px;}
+.f3{left:180px; top:60px;}
+.f4{left:90px; top:110px;}
+
+/* CARTA */
+.carta{
+margin-top:40px;
+width:90%;
+max-width:600px;
+background:rgba(255,255,255,0.08);
+padding:28px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+line-height:1.7;
+font-size:17px;
+opacity:0;
+animation:fadeIn 1.8s forwards;
+animation-delay:2.5s;
+}
+
+
+/* RESPONSIVE */
+@media(max-width:800px){
+.ramito{transform:scale(0.8);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="titulo">Feliz San Valentín, Isabela 🌙</div>
+
+<div class="ramito">
+<div class="luz"></div>
+
+<div class="flor f1"></div>
+<div class="flor f2"></div>
+<div class="flor f3"></div>
+<div class="flor f4"></div>
+
+</div>
+
+<div class="carta">
+Isabela ✨<br><br>
+Quería desearte un Feliz San Valentín.  
+Que hoy esté lleno de tranquilidad, sonrisas sinceras  
+y momentos que te hagan sentir bien.  
+
+Me ha gustado conocerte estos días  
+y compartir conversaciones sencillas pero bonitas.  
+
+Que sigan llegando cosas lindas para ti 🌷
+</div>
+
+<script>
+
+/* ESTRELLAS */
+for(let i=0;i<100;i++){
+let estrella=document.createElement("div");
+estrella.classList.add("estrella");
+estrella.style.left=Math.random()*100+"vw";
+estrella.style.top=Math.random()*100+"vh";
+estrella.style.animationDuration=(1+Math.random()*2)+"s";
+document.body.appendChild(estrella);
+}
+
+/* PETALOS CAYENDO */
+setInterval(()=>{
+let petalo=document.createElement("div");
+petalo.classList.add("petalo-caida");
+petalo.style.left=Math.random()*100+"vw";
+petalo.style.animationDuration=(6+Math.random()*4)+"s";
+document.body.appendChild(petalo);
+
+setTimeout(()=>{petalo.remove();},10000);
+},500);
+
+/* CREAR FLORES */
+const flores=document.querySelectorAll(".flor");
+
+flores.forEach(flor=>{
+for(let i=0;i<6;i++){
+let petalo=document.createElement("div");
+petalo.classList.add("petalo");
+petalo.style.transform=`rotate(${i*60}deg)`;
+flor.appendChild(petalo);
+}
+
+let centro=document.createElement("div");
+centro.classList.add("centro");
+flor.appendChild(centro);
+
+let tallo=document.createElement("div");
+tallo.classList.add("tallo");
+flor.appendChild(tallo);
+});
+
+</script>
+
+</body>
+</html>
